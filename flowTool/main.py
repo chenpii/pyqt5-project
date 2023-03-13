@@ -53,6 +53,14 @@ data = {
 # 阈值区间
 volumeRange = [[0, 1500], [1500, 3000], [3000, 5000], [5000, 20000], [20000, 50000], [50000, float(Inf)]]
 
+data_outside = {
+    '工业建筑': {
+        '厂房': [
+
+        ]
+    }
+}
+
 
 class MainWindow(QMainWindow, Ui_MainWindow):
 
