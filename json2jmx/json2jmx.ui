@@ -9,51 +9,113 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>701</width>
-    <height>422</height>
+    <width>557</width>
+    <height>359</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>701</width>
-    <height>422</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>701</width>
-    <height>422</height>
-   </size>
-  </property>
   <property name="windowTitle">
-   <string>Jmx导入生成小工具</string>
+   <string>Jmx自动生成工具</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>20</y>
-      <width>471</width>
-      <height>181</height>
+      <x>30</x>
+      <y>10</y>
+      <width>461</width>
+      <height>261</height>
      </rect>
     </property>
-    <property name="title">
-     <string>Jmx导入生成小工具</string>
-    </property>
-    <widget class="QPushButton" name="pushButton">
-     <property name="geometry">
-      <rect>
-       <x>200</x>
-       <y>80</y>
-       <width>75</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>转换</string>
-     </property>
-    </widget>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="title">
+        <string>JSON_To_JMX</string>
+       </property>
+       <widget class="QPushButton" name="pushButton_json2jmx">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>90</y>
+          <width>101</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>生成jmx文件</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>32</x>
+          <y>32</y>
+          <width>421</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="label_file_path">
+           <property name="text">
+            <string>JSON目录：</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_file_path">
+           <property name="minimumSize">
+            <size>
+             <width>133</width>
+             <height>20</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_file_path">
+           <property name="text">
+            <string>浏览</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="title">
+        <string>日志</string>
+       </property>
+       <widget class="QTextBrowser" name="textBrowser_logger">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>441</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 9pt &quot;微软雅黑&quot;;</string>
+        </property>
+        <property name="tabChangesFocus">
+         <bool>false</bool>
+        </property>
+        <property name="undoRedoEnabled">
+         <bool>false</bool>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="overwriteMode">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -61,12 +123,11 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>701</width>
+     <width>557</width>
      <height>23</height>
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
