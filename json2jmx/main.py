@@ -27,7 +27,7 @@ class MyThread(QThread):
         向信号trigger发送消息
         '''
         logger_time = time.strftime("%Y-%m-%d_%H:%M:%S", time.localtime(time.time()))
-        self.trigger.emit("[{0}]:{1}".format(logger_time, message))
+        self.trigger.emit("[{0}] {1}".format(logger_time, message))
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -79,10 +79,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             try:
                 ST.swagger_url_json_path = (str(jsonFile))
                 conversion()
-                message = "{} 文件格式转换完成!".format(file_name)
+                message = "{} 文件格式转换 成功!".format(file_name)
                 self.threads.run_(message)
             except Exception as e:
-                message = "{} 文件格式转换 异常!".format(file_name)
+                message = "{} 文件格式转换 失败! 请检查文件内容。".format(file_name)
                 QMessageBox.information(self, "提示", message, QMessageBox.Yes)
                 self.threads.run_(message)
 
