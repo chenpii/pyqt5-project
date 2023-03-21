@@ -28,6 +28,10 @@
   <property name="windowTitle">
    <string>Jmx生成工具</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>C:/Users/zy/Downloads/112fa55d5f6543c11595dc8925ef99d2.jpeg</normaloff>C:/Users/zy/Downloads/112fa55d5f6543c11595dc8925ef99d2.jpeg</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
@@ -59,9 +63,9 @@
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;此工具实现.json接口文件转换成.jmx格式，方便接口自动化&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;1&lt;span style=&quot; font-weight:600;&quot;&gt;.&lt;/span&gt;导出json文件。Yapi上选择按【swaggerjson】方式导出、swagger平台选择【OpenAPI】导出。&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;2.选择json目录和jmx文件保存目录。&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3.点击转换。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;1&lt;span style=&quot; font-weight:600;&quot;&gt;.导出json文件&lt;/span&gt;。Yapi上选择按【swaggerjson】方式导出、swagger平台选择【OpenAPI】导出。&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;2.&lt;span style=&quot; font-weight:600;&quot;&gt;选择Json目录&lt;/span&gt;。&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3.点击&lt;span style=&quot; font-weight:600;&quot;&gt;生成jmx文件&lt;/span&gt;，选择要保存的路径。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </widget>

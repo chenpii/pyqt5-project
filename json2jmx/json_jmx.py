@@ -18,6 +18,9 @@ class Ui_MainWindow(object):
         MainWindow.resize(600, 450)
         MainWindow.setMinimumSize(QtCore.QSize(600, 450))
         MainWindow.setMaximumSize(QtCore.QSize(600, 450))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("C:/Users/zy/Downloads/112fa55d5f6543c11595dc8925ef99d2.jpeg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
@@ -83,9 +86,9 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">此工具实现.json接口文件转换成.jmx格式，方便接口自动化</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1<span style=\" font-weight:600;\">.</span>导出json文件。Yapi上选择按【swaggerjson】方式导出、swagger平台选择【OpenAPI】导出。</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">2.选择json目录和jmx文件保存目录。</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">3.点击转换。</p></body></html>"))
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1<span style=\" font-weight:600;\">.导出json文件</span>。Yapi上选择按【swaggerjson】方式导出、swagger平台选择【OpenAPI】导出。</p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">2.<span style=\" font-weight:600;\">选择Json目录</span>。</p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">3.点击<span style=\" font-weight:600;\">生成jmx文件</span>，选择要保存的路径。</p></body></html>"))
         self.groupBox_2.setTitle(_translate("MainWindow", "Json_To_Jmx"))
         self.label_json_dir.setText(_translate("MainWindow", "Json目录："))
         self.pushButton_json_dir.setText(_translate("MainWindow", "浏览"))
