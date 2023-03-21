@@ -7,8 +7,6 @@ from PyQt5 import QtWidgets
 from PyQt5.QtCore import QThread, pyqtSignal
 from PyQt5.QtWidgets import QMainWindow, QMessageBox
 
-
-
 from swaggerjmx.convert import conversion
 from swaggerjmx.settings import Settings as ST
 
@@ -36,45 +34,50 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
 
-        self.pushButton_file_path.clicked.connect(self.selectPath)
-        self.pushButton_json2jmx.clicked.connect(self.selectSavePath)
+        self.pushButton_json_dir.clicked.connect(self.selectJsonPath)
+        self.pushButton_jmx_dir.clicked.connect(self.selectJmxPath)
+        self.pushButton_trans.clicked.connect(self.jsonTransJmx)
 
         self.threads = MyThread(self)  # 自定义线程类
         self.threads.trigger.connect(self.update_text)  # 当信号接收到消息时，更新数据
 
-    def selectPath(self):
-        # 选择文件夹
-        self.str_path = QtWidgets.QFileDialog.getExistingDirectory(None, "选取文件夹", "")
-        self.lineEdit_file_path.setText(self.str_path)
-        message = "Json目录:{0}".format(self.str_path)
-        self.threads.run_(message)
-        self.Files = glob.glob(self.str_path + os.sep + "*.json")
-        file_name = [file.split('\\')[-1] for file in self.Files]
-        message = "读取到待转换的文件列表:{0}".format(file_name)
-        self.threads.run_(message)
+    def selectJsonPath(self):
+        # 选择Json文件夹
+        json_dir = QtWidgets.QFileDialog.getExistingDirectory(None, "选取文件夹", "")
+        if ('' != json_dir):
+            self.lineEdit_json_dir.setText(json_dir)
 
-    def selectFiles(self):
-        # 选择多个文件
-        self.open_filenames = QtWidgets.QFileDialog.getOpenFileNames(None, '选择文件', '',
-                                                                     'JSON Files (*.json);;All files(*.*)')
-        message = "选择josn文件:{0}".format(self.open_filenames)
-        self.threads.run_(message)
+    def selectJmxPath(self):
+        # 选择Jmx文件夹
+        jmx_dir = QtWidgets.QFileDialog.getExistingDirectory(None, "选取文件夹", "")
+        if ('' != jmx_dir):
+            self.lineEdit_jmx_dir.setText(jmx_dir)
 
-    def selectSaveFile(self):
-        # 设置保存路径
-        save_filename = QtWidgets.QFileDialog.getSaveFileName(None, "设置保存路径", "", "Jmeter脚本文件 (*.jmx)")
-        QtWidgets.QFileDialog.getSaveFileUrl(None, "设置保存路径")
-        message = "jmx保存完成:{0}".format(save_filename)
-        self.threads.run_(message)
-        return save_filename[0]
+    def jsonTransJmx(self):
+        # json转换到jmx
+        json_dir = self.lineEdit_json_dir.text()
+        if ('' == json_dir):
+            self.threads.run_("Json目录不合法！")
+            return
+        jmx_dir = self.lineEdit_jmx_dir.text()
+        if ('' == jmx_dir):
+            self.threads.run_("保存目录不合法！")
+            return
 
-    def selectSavePath(self):
-        # 设置保存路径
-        self.save_file_path = QtWidgets.QFileDialog.getExistingDirectory(None, "设置保存路径", "")
+        message = "选择Json目录:{0}".format(json_dir)
+        self.threads.run_(message)
+        Files = glob.glob(json_dir + os.sep + "*.json")
+        filename_list = [file.split('\\')[-1] for file in Files]
+        if (len(filename_list) == 0):
+            self.threads.run_("目录下不存在json文件！")
+            return
+        self.threads.run_("读取到Json文件：{0}".format(filename_list))
 
         ST.swagger_url_json_path = ''
-        ST.report_path = self.save_file_path
-        for jsonFile in self.Files:
+        ST.report_path = jmx_dir
+        trans_result = True
+
+        for jsonFile in Files:
             file_name = jsonFile.split('\\')[-1]
             try:
                 ST.swagger_url_json_path = (str(jsonFile))
@@ -83,9 +86,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.threads.run_(message)
             except Exception as e:
                 message = "{} 文件格式转换 失败! 请检查文件内容。".format(file_name)
-                QMessageBox.information(self, "提示", message, QMessageBox.Yes)
                 self.threads.run_(message)
+                trans_result = False
 
+        message = "文件保存至目录:{0}".format(jmx_dir)
+        self.threads.run_(message)
+
+        if (trans_result):
+            message = "转换成功！"
+        else:
+            message = "存在转换失败的文件，请检查文件内容!"
+        QMessageBox.information(self, "提示", message, QMessageBox.Ok)
 
     def update_text(self, message):
         '''
