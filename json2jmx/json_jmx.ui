@@ -9,9 +9,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>557</width>
-    <height>359</height>
+    <width>600</width>
+    <height>450</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>600</width>
+    <height>450</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>600</width>
+    <height>450</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Jmx自动生成工具</string>
@@ -22,11 +34,35 @@
      <rect>
       <x>30</x>
       <y>10</y>
-      <width>461</width>
-      <height>261</height>
+      <width>541</width>
+      <height>401</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QGroupBox" name="groupBox_3">
+       <property name="title">
+        <string>使用说明</string>
+       </property>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>501</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>此程序可将.json格式接口文件转换成.jmx格式，方便接口自动化
+1.Yapi上选择按【swaggerjson】导出方式导出，或在swagger平台选择【OpenAPI】导
+出;
+2.选择导出的.json所在目录;
+3.生成jmx文件选择保存路径;</string>
+        </property>
+       </widget>
+      </widget>
+     </item>
      <item>
       <widget class="QGroupBox" name="groupBox_2">
        <property name="title">
@@ -35,7 +71,7 @@
        <widget class="QPushButton" name="pushButton_json2jmx">
         <property name="geometry">
          <rect>
-          <x>180</x>
+          <x>220</x>
           <y>90</y>
           <width>101</width>
           <height>21</height>
@@ -48,7 +84,7 @@
        <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>32</x>
+          <x>72</x>
           <y>32</y>
           <width>421</width>
           <height>31</height>
@@ -93,7 +129,7 @@
          <rect>
           <x>10</x>
           <y>20</y>
-          <width>441</width>
+          <width>521</width>
           <height>91</height>
          </rect>
         </property>
@@ -123,7 +159,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>557</width>
+     <width>600</width>
      <height>23</height>
     </rect>
    </property>

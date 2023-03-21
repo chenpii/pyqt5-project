@@ -1,11 +1,18 @@
+import glob
+import os
 import sys
 import time
 
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import QThread, pyqtSignal
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QMainWindow, QMessageBox
 
-from json2jmx import Ui_MainWindow
+
+
+from swaggerjmx.convert import conversion
+from swaggerjmx.settings import Settings as ST
+
+from json2jmx.json_jmx import Ui_MainWindow
 
 
 class MyThread(QThread):
@@ -37,27 +44,48 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def selectPath(self):
         # 选择文件夹
-        str_path = QtWidgets.QFileDialog.getExistingDirectory(None, "选取文件夹", "")
-        self.lineEdit_file_path.setText(str_path)
-        message = "选择了Json目录:{0}".format(str_path)
-        self.threads.run_(message)  # start the thread
-        # return str_path
+        self.str_path = QtWidgets.QFileDialog.getExistingDirectory(None, "选取文件夹", "")
+        self.lineEdit_file_path.setText(self.str_path)
+        message = "Json目录:{0}".format(self.str_path)
+        self.threads.run_(message)
+        self.Files = glob.glob(self.str_path + os.sep + "*.json")
+        file_name = [file.split('\\')[-1] for file in self.Files]
+        message = "读取到待转换的文件列表:{0}".format(file_name)
+        self.threads.run_(message)
 
     def selectFiles(self):
         # 选择多个文件
-        open_filenames = QtWidgets.QFileDialog.getOpenFileNames(None, '选择文件', '', 'JSON Files (*.json);;All files(*.*)')
-        print(open_filenames)
-        message = "选择josn文件:{0}".format(open_filenames)
-        self.threads.run_(message)  # start the thread
-        return open_filenames
+        self.open_filenames = QtWidgets.QFileDialog.getOpenFileNames(None, '选择文件', '',
+                                                                     'JSON Files (*.json);;All files(*.*)')
+        message = "选择josn文件:{0}".format(self.open_filenames)
+        self.threads.run_(message)
 
-    def selectSavePath(self):
+    def selectSaveFile(self):
         # 设置保存路径
         save_filename = QtWidgets.QFileDialog.getSaveFileName(None, "设置保存路径", "", "Jmeter脚本文件 (*.jmx)")
         QtWidgets.QFileDialog.getSaveFileUrl(None, "设置保存路径")
-        # print(save_filename)
         message = "jmx保存完成:{0}".format(save_filename)
+        self.threads.run_(message)
         return save_filename[0]
+
+    def selectSavePath(self):
+        # 设置保存路径
+        self.save_file_path = QtWidgets.QFileDialog.getExistingDirectory(None, "设置保存路径", "")
+
+        ST.swagger_url_json_path = ''
+        ST.report_path = self.save_file_path
+        for jsonFile in self.Files:
+            file_name = jsonFile.split('\\')[-1]
+            try:
+                ST.swagger_url_json_path = (str(jsonFile))
+                conversion()
+                message = "{} 文件格式转换完成!".format(file_name)
+                self.threads.run_(message)
+            except Exception as e:
+                message = "{} 文件格式转换 异常!".format(file_name)
+                QMessageBox.information(self, "提示", message, QMessageBox.Yes)
+                self.threads.run_(message)
+
 
     def update_text(self, message):
         '''

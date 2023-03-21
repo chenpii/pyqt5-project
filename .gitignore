@@ -1,3 +1,6 @@
 /flowTool/dist
 /flowTool/main.spec
 /flowTool/build
+/json2jmx/main.spec
+/json2jmx/build
+/json2jmx/dist
