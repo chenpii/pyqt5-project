@@ -30,7 +30,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>C:/Users/zy/Downloads/112fa55d5f6543c11595dc8925ef99d2.jpeg</normaloff>C:/Users/zy/Downloads/112fa55d5f6543c11595dc8925ef99d2.jpeg</iconset>
+    <normaloff>工具.svg</normaloff>工具.svg</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="layoutWidget">
